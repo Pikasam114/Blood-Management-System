@@ -21,7 +21,6 @@ function addToInventory(req, res) {
     [bloodType, bloodBank, parseInt(qty)],
     (error, result) => {
       if (error) return res.json({ message: error })
-      // console.log(result)
       res.send(result)
     }
   )
