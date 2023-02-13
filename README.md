@@ -40,8 +40,16 @@ Search by blood group and view in which hospitals / blood banks, the blood group
 ### Database
 
 - Table: 'inventory'
+
+![image](https://user-images.githubusercontent.com/52107627/218456864-25f0b211-1084-485c-8521-020a853f6429.png)
+
 - Table: 'blood_bank'
+
+![image](https://user-images.githubusercontent.com/52107627/218456994-74047bce-9a24-409e-930d-e11b1284c1c4.png)
+
 - Table: 'blood'
+
+![image](https://user-images.githubusercontent.com/52107627/218457071-e3a9fdb6-68d5-423e-a47e-da35c5060a28.png)
 
 ### Continued Development
 
