@@ -15,11 +15,13 @@ function updateQty(req, res) {
 
 function addToInventory(req, res) {
   const { bloodType, bloodBank, qty } = req.body
+  console.log(req.body)
   db.query(
-    "INSERT INTO inventory VALUES((SELECT blood_id FROM blood WHERE type = ?), (SELECT bank_id FROM blood_bank WHERE name = ?), ?;",
-    [bloodType, bloodBank, qty],
+    "INSERT INTO inventory VALUES ((SELECT blood_id FROM blood WHERE type = ?), (SELECT bank_id FROM blood_bank WHERE name = ?), ?);",
+    [bloodType, bloodBank, parseInt(qty)],
     (error, result) => {
       if (error) return res.json({ message: error })
+      // console.log(result)
       res.send(result)
     }
   )

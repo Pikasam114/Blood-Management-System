@@ -1,10 +1,8 @@
-import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import SearchBlood from "./components/SearchBlood";
-import UpdateInventory from "./components/UpdateInventory";
-import DeleteBank from "./components/DeleteBank";
-import { Routes, Route, BrowserRouter as Router } from "react-router-dom";
-import CreateBank from "./components/CreateBank";
+import SearchBlood from "./components/SearchBlood"
+import UpdateInventory from "./components/UpdateInventory"
+import DeleteInventoryRecord from "./components/DeleteInventoryRecord"
+import CreateInventoryRecord from "./components/CreateInventoryRecord"
+import { Routes, Route, BrowserRouter as Router } from "react-router-dom"
 
 function App() {
   return (
@@ -13,12 +11,12 @@ function App() {
         <Routes>
           <Route path="/" element={<SearchBlood />} />
           <Route path="/update" element={<UpdateInventory />} />
-          <Route path="/delete" element={<DeleteBank />} />
-          <Route path="/create" element={<CreateBank/>} />
+          <Route path="/delete" element={<DeleteInventoryRecord />} />
+          <Route path="/create" element={<CreateInventoryRecord />} />
         </Routes>
       </Router>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App

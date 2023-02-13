@@ -1,15 +1,13 @@
 import React, { useState, useEffect } from "react"
-import { Link } from "react-router-dom"
 import Button from "react-bootstrap/esm/Button"
 import Form from "react-bootstrap/Form"
 import FormLabel from "react-bootstrap/esm/FormLabel"
 
-export default function UpdateInventory() {
+export default function DeleteInventoryRecord() {
   const [bloodTypes, setBloodTypes] = useState([])
   const [bloodBanks, setBloodBanks] = useState([])
   const [selectedBloodType, setSelectedBloodType] = useState("")
   const [selectedBloodBank, setSelectedBloodBank] = useState("")
-  const [qty, setQty] = useState(0)
 
   //get all blood types & all blood banks for dropdowns
   useEffect(() => {
@@ -31,26 +29,25 @@ export default function UpdateInventory() {
   // submitting the update form
   function handleUpdate(event) {
     event.preventDefault()
-    let searchBloodBank = selectedBloodBank
+    let deleteBloodBank = selectedBloodBank
       ? selectedBloodBank
       : bloodBanks[0].name
-    let searchBloodType = selectedBloodType
+    let deleteBloodType = selectedBloodType
       ? selectedBloodType
       : bloodTypes[0].type
 
     fetch(`http://localhost:8080/api/inventory`, {
-      method: "PUT",
+      method: "DELETE",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        bloodBank: searchBloodBank,
-        bloodType: searchBloodType,
-        qty: qty,
+        bloodBank: deleteBloodBank,
+        bloodType: deleteBloodType,
       }),
     }).then((res) => console.log(res))
-    console.log(searchBloodType, searchBloodBank, qty)
-    console.log("updated!!!")
+    console.log(deleteBloodType, deleteBloodBank)
+    console.log("deleted!!!")
   }
   function handleBloodTypeSelect(event) {
     setSelectedBloodType(event.target.value)
@@ -58,13 +55,9 @@ export default function UpdateInventory() {
   function handleBloodBankSelect(event) {
     setSelectedBloodBank(event.target.value)
   }
-  function handleQtyChange(event) {
-    setQty(event.target.value)
-  }
 
   return (
     <div>
-      <Link to="/">HOME</Link>
       <Form
         className="d-flex gap-2 justify-content-between"
         onSubmit={handleUpdate}
@@ -81,19 +74,9 @@ export default function UpdateInventory() {
             {bloodBankOptions}
           </Form.Select>
         </div>
-        <div className="d-flex flex-column">
-          <FormLabel htmlFor="qty">Quantity:</FormLabel>
-          <input
-            type={"number"}
-            id="qty"
-            name="qty"
-            onChange={handleQtyChange}
-            value={qty}
-          />
-        </div>
-        <Button variant="primary" onClick={handleUpdate} className="my-2">
-          Save
-        </Button>{" "}
+        <Button variant="danger" onClick={handleUpdate} className="my-2">
+          Delete
+        </Button>
       </Form>
     </div>
   )
