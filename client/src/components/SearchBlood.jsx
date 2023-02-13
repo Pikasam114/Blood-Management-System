@@ -6,7 +6,7 @@ import BloodBankByBlood from "./BloodBankByBlood";
 
 function SearchBlood() {
   const [bloodTypes, setBloodTypes] = useState([]);
-  const [selectedType, setSelectedType] = useState(bloodTypes[0]);
+  const [selectedBloodType, setSelectedBloodType] = useState("");
   const [searchResults, setSearchResults] = useState([]);
 
   // getting data from blood tables
@@ -16,21 +16,21 @@ function SearchBlood() {
       .then((data) => setBloodTypes(data));
   }, []);
 
-  function handleTypeSelect(event) {
-    setSelectedType(event.target.value);
+  function handleBloodTypeSelect(event) {
+    setSelectedBloodType(event.target.value);
   }
 
   function handleSearchByBlood() {
-    let searchType;
-    if (!selectedType) {
-      searchType = bloodTypes[0].type;
+    let searchBloodType;
+    if (!selectedBloodType) {
+      searchBloodType = bloodTypes[0].type;
     } else {
-      searchType = selectedType;
+      searchBloodType = selectedBloodType;
     }
-    fetch(`http://localhost:8080/api/blood/type/${searchType}`)
+    fetch(`http://localhost:8080/api/blood/type/${searchBloodType}`)
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        // console.log(data);
         setSearchResults(data);
       });
   }
@@ -52,7 +52,7 @@ function SearchBlood() {
         <div className="d-flex flex-column align-items-center">
           <span className="text-light">Blood Type:</span>
           <Form>
-            <Form.Select onChange={handleTypeSelect}>
+            <Form.Select onChange={handleBloodTypeSelect}>
               {bloodTypeOptions}
             </Form.Select>
             <Button variant="success" onClick={handleSearchByBlood}>

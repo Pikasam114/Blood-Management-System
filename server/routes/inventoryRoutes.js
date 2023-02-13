@@ -1,7 +1,17 @@
-const router = require("express").Router();
+const router = require("express").Router()
+const {
+  updateQty,
+  addToInventory,
+  deleteFromInventory,
+} = require("../controllers/inventoryControllers")
 
-router.get("/", (req, res) => {
-  res.send("hello you requested /api/inventory");
-});
+// POST request
+router.post("/", addToInventory)
 
-module.exports = router;
+// DELETE request
+router.delete("/", deleteFromInventory)
+
+//when getting PUT request
+router.put("/", updateQty)
+
+module.exports = router
