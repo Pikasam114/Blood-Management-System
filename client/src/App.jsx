@@ -8,7 +8,7 @@ import CreateBank from "./components/CreateBank";
 
 function App() {
   return (
-    <div className="App">
+    <div className="App p-4">
       <Router>
         <Routes>
           <Route path="/" element={<SearchBlood />} />
