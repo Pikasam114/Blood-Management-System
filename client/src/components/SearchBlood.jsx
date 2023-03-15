@@ -3,6 +3,13 @@ import { Helmet } from "react-helmet";
 import Button from "react-bootstrap/Button";
 import { useState, useEffect } from "react";
 import BloodBankByBlood from "./BloodBankByBlood";
+import { Link } from "react-router-dom"
+import Container from 'react-bootstrap/Container';
+import Nav from 'react-bootstrap/Nav';
+import Navbar from 'react-bootstrap/Navbar';
+
+
+
 
 function SearchBlood() {
   const [bloodTypes, setBloodTypes] = useState([]);
@@ -41,28 +48,45 @@ function SearchBlood() {
 
   return (
     <>
+      <Navbar bg="dark" variant="dark" fixed="bottom">
+        <Container>
+          <Navbar.Brand href="/">Search</Navbar.Brand>
+          <Nav className="me-auto">
+            <Nav.Link href="create">Create </Nav.Link>
+            <Nav.Link href="update">Update </Nav.Link>
+            <Nav.Link href="delete">Delete </Nav.Link>
+          </Nav>
+        </Container>
+      </Navbar>
+      
+      
       <div className="container">
         <Helmet>
-          <style>{"body { background-color: #34495E; }"}</style>
+          <style>{"body { background-color: #036491; }"}</style>
         </Helmet>
-
-        <h2 style={{ color: "orange" }} className="text-center">
-          SEARCH BLOOD
-        </h2>
+        <h1 style={{color:"black"}} className="text-center">
+          BLOOD MANAGEMENT SYSTEM 
+        </h1>
+        <h1 style={{ color: "black" }} className="text-center">
+          SEARCH FOR BLOOD
+        </h1>
         <div className="d-flex flex-column align-items-center">
           <span className="text-light">Blood Type:</span>
           <Form>
             <Form.Select onChange={handleBloodTypeSelect}>
               {bloodTypeOptions}
             </Form.Select>
-            <Button variant="success" onClick={handleSearchByBlood}>
+            <br/>
+            <Button class='btn1' variant="success" onClick={handleSearchByBlood}>
               Search
             </Button>{" "}
           </Form>
         </div>
+        
       </div>
       {/* search results component here */}
       {searchResults.length && <BloodBankByBlood details={searchResults} />}
+      <br/>
     </>
   );
 }

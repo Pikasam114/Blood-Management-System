@@ -1,7 +1,14 @@
-import React, { useState, useEffect } from "react"
-import Button from "react-bootstrap/esm/Button"
-import Form from "react-bootstrap/Form"
-import FormLabel from "react-bootstrap/esm/FormLabel"
+import React, { useState, useEffect } from "react";
+import Button from "react-bootstrap/esm/Button";
+import Form from "react-bootstrap/Form";
+import FormLabel from "react-bootstrap/esm/FormLabel";
+import { Link } from "react-router-dom";
+import Container from 'react-bootstrap/Container';
+import Nav from 'react-bootstrap/Nav';
+import Navbar from 'react-bootstrap/Navbar';
+import { Helmet } from "react-helmet";
+
+
 
 function CreateInventoryRecord() {
   const [bloodTypes, setBloodTypes] = useState([])
@@ -62,7 +69,22 @@ function CreateInventoryRecord() {
   }
 
   return (
+    <>
     <div>
+      <Helmet>
+        <style>{"body { background-color: #036491; }"}</style>
+      </Helmet>
+      <Navbar bg="dark" variant="dark" fixed="bottom">
+        <Container>
+          <Navbar.Brand href="/">Search</Navbar.Brand>
+          <Nav className="me-auto">
+            <Nav.Link href="create">Create </Nav.Link>
+            <Nav.Link href="update">Update </Nav.Link>
+            <Nav.Link href="delete">Delete </Nav.Link>
+          </Nav>
+        </Container>
+      </Navbar>
+      <h1 style={{color:"black", fontFamily:'sans-serif'}} className="text-center">Create An Entry</h1>
       <Form
         className="d-flex gap-2 justify-content-between"
         onSubmit={handleUpdate}
@@ -79,7 +101,7 @@ function CreateInventoryRecord() {
             {bloodBankOptions}
           </Form.Select>
         </div>
-        <div className="d-flex flex-column">
+        <div className="d-flex flex-column mb-3">
           <FormLabel htmlFor="qty">Quantity:</FormLabel>
           <input
             type={"number"}
@@ -94,6 +116,7 @@ function CreateInventoryRecord() {
         </Button>
       </Form>
     </div>
+    </>
   )
 }
 

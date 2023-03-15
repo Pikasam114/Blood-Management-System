@@ -1,8 +1,14 @@
-import React, { useState, useEffect } from "react"
-import { Link } from "react-router-dom"
-import Button from "react-bootstrap/esm/Button"
-import Form from "react-bootstrap/Form"
-import FormLabel from "react-bootstrap/esm/FormLabel"
+import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import Button from "react-bootstrap/esm/Button";
+import Form from "react-bootstrap/Form";
+import FormLabel from "react-bootstrap/esm/FormLabel";
+import Container from 'react-bootstrap/Container';
+import Nav from 'react-bootstrap/Nav';
+import Navbar from 'react-bootstrap/Navbar';
+import { Helmet } from "react-helmet";
+
+
 
 export default function UpdateInventory() {
   const [bloodTypes, setBloodTypes] = useState([])
@@ -64,7 +70,20 @@ export default function UpdateInventory() {
 
   return (
     <div>
-      <Link to="/">HOME</Link>
+      <Navbar bg="dark" variant="dark" fixed="bottom">
+        <Container>
+          <Navbar.Brand href="/">Search</Navbar.Brand>
+          <Nav className="me-auto">
+            <Nav.Link href="create">Create </Nav.Link>
+            <Nav.Link href="update">Update </Nav.Link>
+            <Nav.Link href="delete">Delete </Nav.Link>
+          </Nav>
+        </Container>
+      </Navbar>
+      <Helmet>
+          <style>{"body { background-color: #036491; }"}</style>
+      </Helmet>
+      <h1 style={{color:"black", fontFamily:'sans-serif'}} className="text-center">Update An Entry</h1>
       <Form
         className="d-flex gap-2 justify-content-between"
         onSubmit={handleUpdate}
